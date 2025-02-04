@@ -9,7 +9,7 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('GET', 'https://accommodations.booking.com/autocomplete.json', true);
+    req.open('POST', 'https://accommodations.booking.com/autocomplete.json', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
         function reqListener() {
