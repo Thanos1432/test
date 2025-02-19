@@ -9,7 +9,7 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('POST', 'https://account.acronis.com/v2/account', true);
+    req.open('PUT', 'https://account.acronis.com/v2/account', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
     
