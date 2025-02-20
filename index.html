@@ -9,7 +9,7 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('PUT', 'https://websiteapi.acronis.com/geo/location/v1/ip/geolocation', true);
+    req.open('GET', 'https://elementor.api.kustomerapp.com/c/v1/tracking/tokens/current', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
     
