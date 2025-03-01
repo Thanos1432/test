@@ -9,7 +9,7 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('GET', 'https://api.marionnaud.sk/api/v2/msk-spa/cms/components?fields=DEFAULT&currentPage=0&pageSize=2&componentIds=loginLink%2CRegisterLink&lang=sk_SK&curr=EUR', true);
+    req.open('POST', 'https://api.marionnaud.sk/api/v2/msk-spa/cms/components?fields=DEFAULT&currentPage=0&pageSize=2&componentIds=loginLink%2CRegisterLink&lang=sk_SK&curr=EUR', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
     
