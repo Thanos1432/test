@@ -9,7 +9,7 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('GET', 'https://config.ubnt.com/cloudAccessConfig.json?t=1740825016422', true);
+    req.open('GET', 'https://cloudaccess.svc.ui.com/create-credentials', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
     
