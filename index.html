@@ -9,7 +9,7 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('POST', 'https://us-central1-gcp.api.snapchat.com/web-analytics/web/init_client', true);
+    req.open('GET', 'https://config.ubnt.com/cloudAccessConfig.json?t=1740825016422', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
     
